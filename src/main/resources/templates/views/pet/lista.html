@@ -10,12 +10,10 @@
 <body>
     <div th:insert="~{fragments/navigation :: navigation}"></div>
     <main>
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light">
+        <div class="d-flex flex-column flex-shrink-0 p-3">
             <div>
-                <span class="fs-4">Buscar mascota</span>
+                <span class=" banner-text">Buscar mascota</span>
             </div>
-            <br>
-            <hr>
             <form th:object="${search}" th:action="@{/pets/filter}">
                 <input type="hidden" th:field="*{typePet}">
                 <label for="color" class="form-label">Color</label>
@@ -33,15 +31,14 @@
                     <option selected value="0">Selecciona</option>
                     <option th:each="itemPersonality: ${listPersonalities}" th:value="${itemPersonality.id}" th:text="${itemPersonality.name}"></option>
                 </select>
-                <button type="submit" class="btn btn-info mt-3">Filtrar</button>
+                <button type="submit" class="btn mt-3" style="background-color:  #cafcfb; color: black;">Filtrar</button>
 
             </form>
             <hr>
             <div>
-                <a th:href="@{/pets/adopt/{type}(type=${typePet})}"><strong>Borrar filtros</strong></a>
+                <a th:href="@{/pets/adopt/{type}(type=${typePet})}" style="color: black"><strong>Borrar filtros</strong></a>
             </div>
         </div>
-        <div class="b-example-divider"></div>
         <div class="container">
             <div class="row" th:if="${listPets.numberOfElements != 0}">
                 <div th:each="item : ${listPets}" class="col-lg-4 mb-4">
