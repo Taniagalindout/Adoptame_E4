@@ -90,10 +90,12 @@ public class UserAdoptameServiceImpl implements UserAdoptameService {
                 Path path = error.getPropertyPath();
                 String key = path.toString();
                 String message = error.getMessage();
-                logger.info("Error " + error.getPropertyPath().toString()+"   " +error.getMessage() );
+                System.out.println("Error " + error.getPropertyPath().toString()+"   " +error.getMessage() );
                 if (errors.get(key) != null) {
+                    System.out.println("Soy pendejo");
                     errors.get(key).add(message);
                 } else {
+                    System.out.println("Ptm");
                     messages.add(message);
                     errors.put(key, messages);
                 }
