@@ -6,6 +6,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+
     <title>Form Adopt</title>
 </head>
 <body>
@@ -18,8 +21,8 @@
                 <input type="hidden" th:field="*{petId}">
 
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary">
-                        Enviar solicitud de adopción
+                    <button class="btn" style="background-color:  #0abbb5; color: black">
+                        <i class="bi bi-send"></i> Enviar solicitud de adopción
                     </button>
                 </div>
             </div>

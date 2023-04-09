@@ -15,9 +15,9 @@
 
     <div class="row">
         <div class="col-12 col-md-4 d-flex mb-2 justify-content-center align-items-center">
-            <img class="img-fluid border-2 border-dark" th:src="@{/uploads/{image}(image=${pet.image})}" alt="" />
+            <img class="img-fluid border-2" th:src="@{/uploads/{image}(image=${pet.image})}" alt="" />
         </div>
-        <div class="col-12 col-md-8 border border-3 border-dark rounded p-2">
+        <div class="col-12 col-md-8 p-2">
             <div th:insert="~{fragments/infoPet :: infoPet}">
 
             </div>

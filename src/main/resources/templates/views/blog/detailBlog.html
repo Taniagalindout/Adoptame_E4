@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/icons/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/styleButton.css}">
 
 </head>
 
@@ -53,8 +54,8 @@
                 <!-- end of item -->
             <div class="row mt-5">
                 <div class="col-12 text-end">
-                    <a th:href="@{/blog/general}"  th:if="${flag == true}" class="btn btn-primary"> <i class="bi bi-arrow-left"></i><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Regresar</span> </a>
-                    <a th:href="@{/}"  th:if="${flag == false}"  class="btn btn-primary"> <i class="bi bi-arrow-left"></i><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Regresar</span> </a>
+                    <a th:href="@{/blog/general}"  th:if="${flag == true}" class="btn btnBack"> <i class="bi bi-arrow-left"></i><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Volver</span> </a>
+                    <a th:href="@{/}"  th:if="${flag == false}"  class="btn btnBack"> <i class="bi bi-arrow-left"></i><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Volver</span> </a>
                 </div>
                
             </div>

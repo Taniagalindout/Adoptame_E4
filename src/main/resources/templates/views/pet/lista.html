@@ -46,15 +46,7 @@
                         <img th:src="@{/uploads/{img}(img=${item.image})}" alt="" class="card-img-top" style="max-height: 200px;">
                         <div class="row">
                             <div class="col">
-                                <div class="banner">
-                                    <div class="feeds">
-                                        <div class="feed">
-                                            <div class="actions">
-                                                <div class="heart"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="col"><span class="badge bg-info text-dark text-capitalize">[[${item.type}]]</span></div>
                         </div>
@@ -68,8 +60,16 @@
                             <div>
                                 <a class="btn btn-warning" th:href="@{/adoptions/detail/{id}(id = ${item.id})}">Detalle</a>
                             </div>
+                                <div class="feeds">
+                                    <div class="feed">
+                                        <div class="actions">
+                                            <div class="heart"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             <!--                            <p>Añadido hace 2 días</p>-->
                         </div>
+
                     </div>
                 </div>
                 <div th:insert="~{fragments/paginator :: paginator}">
