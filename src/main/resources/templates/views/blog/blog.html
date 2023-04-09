@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <p class="banner-text">Encuentra interesantes artículos sobre nuestras mascotas y nuestra campaña para seguir apoyando a los animales</p>
+    <p class="banner-text text-center">Encuentra interesantes artículos sobre nuestras mascotas y nuestra campaña para seguir apoyando a los animales</p>
 </header>
 <!-- end of header -->
 
@@ -35,19 +35,18 @@
         <div th:insert="~{fragments/alert :: alerts}">
         </div>
         <h1 class="text-center" th:if="${!flagRegister}">No existen blogs publicados</h1>
+
         <div class="design-content">
             <!-- item -->
             <div class="design-item" th:each="item : ${listBlogs}">
                 <div class="design-img">
                     <img id="img-index" th:src="@{/uploads/{image} (image=${item.image})}" alt="Este blog no tiene imagen" height="300px" width="300px">
-                    <span style="display: none;"> <li>icono</li></span>
-                    <span></span>
                 </div>
                 <div class="design-title">
                     <a th:href="@{/blog/find_details_blog/{id}/true (id=${item.id})}">
-                        <p style="font-size: 17px;"><span style="font-size: 20px;"><b>[[${item.title}]]</b></span></p>
-                        <p style="font-size: 17px;">Escrito por: <span style="font-size: 17px;">[[${item.user.name}]] [[${item.user.firstLastname}]] [[${item.user.secondLastname}]]</span></p>
-                        <p style="font-size: 17px;"><span style="font-size: 10px;">[[${#dates.format(item.createdAt, 'dd-MM-yyyy')}]]</span></p>
+                        <p><span style="font-size: 19px;"><b>[[${item.title}]]</b></span></p>
+                        <p style="font-size: 15px;">Escrito por: <span>[[${item.user.name}]] [[${item.user.firstLastname}]] [[${item.user.secondLastname}]]</span></p>
+                        <p><span style="font-size: 10px;">[[${#dates.format(item.createdAt, 'dd-MM-yyyy')}]]</span></p>
                     </a>
 
                 </div>

@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/icons/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/blog.css}">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
-    <link rel="stylesheet" th:href="@{/css/styleButton.css}">
-
 </head>
 
 <body>
@@ -24,7 +23,7 @@
         <div class="banner">
             <div class="container">
                 <h1 class="banner-title">
-                    <span></span> [[${item.title}]]
+                    <b>[[${item.title}]]</b>
                 </h1>
             </div>
         </div>
@@ -33,31 +32,43 @@
 
     <!-- design -->
     <section class="design" id="design">
+
         <div class="container">
-            <div class="title">
-                <h2>Escrito por: [[${item.user.name}]] [[${item.user.firstLastname}]]
-                    [[${item.user.secondLastname}]]</h2>
-                <p>Fecha publicaciónn [[${#dates.format(item.createdAt, 'dd-MM-yyyy')}]]</p>
+
+            <!-- item -->
+            <div class="row">
+
+                <img class="img-info img-height img-height2" id="img-info"  th:src="@{/uploads/{image} (image=${item.image})}"  height="200px"
+                     th:if="${item.image != null}">
+
+                <div class="col-1 hide-col">
+
+                </div>
+                <div class="col-10">
+                    <p th:utext="${item.content}"></p>
+                    <hr style="margin-top: 6%">
+                    <div class="row" >
+                        <div class="col-12 col-sm-10">
+                            <b>Escrito por: [[${item.user.name}]] [[${item.user.firstLastname}]]
+                                [[${item.user.secondLastname}]]</b>
+                        </div>
+                        <div class="col-12 col-sm-2">
+                            <b>[[${#dates.format(item.createdAt, 'dd-MM-yyyy')}]]</b>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="col-1 hide-col">
+
+                </div>
             </div>
-
-                <!-- item -->
-                <div class="row">
-                    <div class="col-4 align-content-center" >
-                        <img class="img-info" id="img-info"  th:src="@{/uploads/{image} (image=${item.image})}"  height="200px"
-                             width="300px" th:if="${item.image != null}">
-                    </div>
-
-                    <div class="design-text-info col-8">
-                        <p th:utext="${item.content}"></p>
-                    </div>
+            <!-- end of item -->
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <a th:href="@{/blog/general}"  th:if="${flag == true}" class="btn"> <i class="bi bi-arrow-left"></i><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Volver</span> </a>
+                    <a th:href="@{/}"  th:if="${flag == false}"  class="btn"> <i class="bi bi-arrow-left"></i><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Volver</span> </a>
                 </div>
-                <!-- end of item -->
-            <div class="row mt-5">
-                <div class="col-12 text-end">
-                    <a th:href="@{/blog/general}"  th:if="${flag == true}" class="btn btnBack"> <i class="bi bi-arrow-left"></i><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Volver</span> </a>
-                    <a th:href="@{/}"  th:if="${flag == false}"  class="btn btnBack"> <i class="bi bi-arrow-left"></i><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Volver</span> </a>
-                </div>
-               
+
             </div>
         </div>
     </section>
