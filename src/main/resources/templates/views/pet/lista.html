@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <header th:insert="~{fragments/head :: head}">
+
+    </header>
+</head>
+
+<body>
+<div th:insert="~{fragments/navigation :: navigation}"></div>
+
+<div>ㅤ</div>
+
+    <div class="container mt-6">
+        <div class="row">
+            <div class="col-12 col-sm-2 my-fixed-item">
+                    <div>
+                        <span class="banner-text text-center"><i class="bi bi-search"></i>ㅤBuscar</span>
+                    </div>
+                    <form th:object="${search}" th:action="@{/pets/filter}">
+                        <input type="hidden" th:field="*{typePet}">
+                        <label for="color" class="form-label">Color</label>
+                        <select id="color" class="form-select mb-2" th:field="*{colorId}">
+                            <option selected value="0">Selecciona</option>
+                            <option th:each="itemColor: ${listColors}" th:value="${itemColor.id}" th:text="${itemColor.name}"></option>
+                        </select>
+                        <label for="size" class="form-label">Tamaño</label>
+                        <select id="size" class="form-select mb-2" th:field="*{sizeId}">
+                            <option selected value="0">Selecciona</option>
+                            <option th:each="itemSize: ${listSizes}" th:value="${itemSize.id}" th:text="${itemSize.name}"></option>
+                        </select>
+                        <label for="personality" class="form-label">Carácter</label>
+                        <select id="personality" class="form-select mb-2" th:field="*{personalityId}">
+                            <option selected value="0">Selecciona</option>
+                            <option th:each="itemPersonality: ${listPersonalities}" th:value="${itemPersonality.id}" th:text="${itemPersonality.name}"></option>
+                        </select>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-blue text-white mt-3"><b>Filtrar</b></button>
+                        </div>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <a th:href="@{/pets/adopt/{type}(type=${typePet})}" style="color: black"><strong>Borrar filtros</strong></a>
+                    </div>
+            </div>
+
+            <div class="col-12 col-sm-10" th:if="${listPets.numberOfElements != 0}">
+                <div class="row">
+                    <div th:each="item : ${listPets}" class="col-12 col-sm-6 col-md-4">
+                        <div class="card mt-3">
+                            <img th:src="@{/uploads/{img}(img=${item.image})}" alt="" class="card-img-top" style="height: 200px !important;">
+                            <div class="row">
+                                <h5 class="card-title text-center">[[${item.name}]]</h5>
+                                <hr>
+                                <div class="col-12 text-center">
+                                    <span class="badge btn-blueC text-dark text-capitalize">[[${item.type}]]</span>
+                                    <span class="badge btn-blueC text-dark text-capitalize">[[${item.sex}]]</span>
+                                    <span class="badge btn-blueC text-dark text-capitalize">[[${item.availableAdoption ? 'En Adopacion' : 'No disponible'}]]</span>
+                                </div>
+                                <hr class="mt-3">
+                            </div>
+                            <div class="card-body" style="margin-top: -10px">
+                                <h6 class="text-capitalize text-center"><strong>Edad de mascota:</strong>&nbsp;[[${item.age}]]</h6>
+                                <h6 class="text-capitalize text-center"><strong>Tamaño:</strong>&nbsp;[[${item.size.name}]]</h6>
+                                <hr>
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <div>
+                                    <a class="btn btn-blue text-white" th:href="@{/adoptions/detail/{id}(id = ${item.id})}"><b>Detalle</b></a>
+                                    <div class="feeds">
+                                        <div class="feed">
+                                            <div class="actions">
+                                                <div class="heart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                            <p>Añadido hace 2 días</p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>ㅤ</div>
+                <div th:insert="~{fragments/paginator :: paginator}">
+                </div>
+            </div>
+
+            <div class="row" th:if="${listPets.numberOfElements == 0}">
+                <h2>No existen mascotas disponibles</h2>
+            </div>
+        </div>
+    </div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

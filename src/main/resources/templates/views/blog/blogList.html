@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header th:insert="~{fragments/headBlog :: head}"></header>
+
+<body>
+<div th:insert="~{fragments/infoToast :: infoToast}"></div>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+<!-- Breadcrumb-------------- -->
+<div class="container">
+    <div class="col-lg-12 mt-5 mb-2">
+        <nav class="d-flex flex-row-reverse" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">ADOPTAME</li>
+                <li class="breadcrumb-item" aria-current="page">NOTICIAS</li>
+                <li class="breadcrumb-item active text-primary" aria-current="page"><b>BLOG</b></li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Card-------------- -->
+
+    <div class="card" >
+        <div class="card-body">
+            <div class="row">
+                <div class="col-11">
+                    <h5 class="card-title"><b>ㅤADMINISTRACIÓN DE BLOGS</b></h5>
+                </div>
+                <div class="col-1 text-center">
+                    <a th:href="@{/blog/create}" type="button" class="btn btn-info btn-circle"><i class="bi bi-plus-lg"></i>
+                    </a>
+                </div>
+                <hr class="mt-2"/>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th >Titulo</th>
+                        <th class="text-center"><span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Fecha de Creación</span></th>
+                        <th class="text-center">¿Es principal?</th>
+                        <th class="text-center">Autor</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="item, iter : ${listBlogs}" style="margin-bottom: 5px">
+                    <tr class="bg-blue">
+                        <td class="pt-3 mt-1">ㅤ[[${index + (iter.index +1)}]]</td>
+                        <td class="pt-3 mt-1">[[${item.title.length > 35 ? item.title.substring(0,35)+".." : item.title}]]</td>
+                        <td class="pt-3 text-center">[[${#dates.format(item.createdAt, 'dd-MM-yyyy HH:MM')}]]</td>
+                        <td class="pt-3 text-center"><span class="fa fa-check pl-3">[[${item.isPrincipal == true ? "Si" : "No"}]]</span></td>
+                        <td class="pt-3 text-center">[[${item.user.name}]]</td>
+                        <td class="pt-3 text-center"> <a th:href="@{/blog/find_update/{id}/true (id=${item.id})}" class="btn btn-blueC"><i class="bi bi-pencil-square"></i></a>
+                            <a th:href="@{/blog/managment/details/{id}/false (id=${item.id})}" class="btn btn-blue"><i class="bi bi-eye"></i></a></td>
+                    </tr>
+                    <tr id="spacing-row">
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/footerBlog :: footer}"></div>
+</body>
+</html>

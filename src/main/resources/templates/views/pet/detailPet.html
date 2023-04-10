@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header th:replace="~{fragments/head :: head}">
+</header>
+
+<body>
+    <div th:replace="~{fragments/navigation :: navigation}">
+    </div>
+
+    <div class="container mt-3">
+        <div th:insert="~{fragments/alert :: alerts}">
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h5 class="card-title"><b>ㅤDETALLE MASCOTA</b></h5>
+            </div>
+            <hr class="col-12 mt-3"/>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-4 justify-content-center align-items-center">
+                <img class="img-fluid" th:src="@{/uploads/{image}(image=${pet.image})}" alt="" />
+                <div class="col-12">ㅤ</div>
+                <div class="col-12 d-grid gap-2">
+                    <a th:href="@{/pets/management_list}" class="btn btn-block btn-blueC"><i class="bi bi-arrow-left"></i> <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"><b>Volver</b></span></a>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div th:insert="~{fragments/infoPet :: infoPet}">
+
+                </div>
+                <div class="col-12 mt-2" sec:authorize="hasRole('ROLE_ADMINISTRADOR')" th:insert="~{fragments/formTracingPet :: petTracingForm}">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        <div th:replace="~{fragments/footer :: footer}">
+        </div>
+</body>
+
+</html>

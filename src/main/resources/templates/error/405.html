@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/405.css}">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous"
+    />
+</head>
+
+
+<body>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-6">
+            <img th:src="@{/images/405.gif}" class="prueba">
+        </div>
+
+        <div class="col-6 error-text">
+          <h1>405</h1>
+          <p class="T1">MÉTODO NO PERMITIDO</p>
+          <p class="T2">Lo sentimos, el método que está utilizando no está permitido.</p>
+          <br />
+          <button class="btn"><a th:href="'javascript:history.back()'" style="color: black;">Regresar</a></button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+
+    body {
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      font-family: "Roboto Condensed", sans-serif;
+      
+    }
+
+    h1 {
+      font-size: 200px;
+      color: #feeacc;
+      text-align: center;
+      margin-top: 100px;
+      text-shadow: 3px 3px 0 #8f8d8d;
+    }
+
+    .btn{
+      text-align: center;
+      background-color: #feeacc;
+      justify-items: center;
+      margin-left: 230px;
+    }
+
+    .T1 {
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .T2 {
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .prueba {
+      height: 500px;
+    }
+
+  </style>
+
+
+</html>
