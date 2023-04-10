@@ -10,131 +10,142 @@
 <div th:insert="~{fragments/infoToast :: infoToast}">
 </div>
 
-<main>
 
-    <div class="container" id="container">
-        <!--Formulario de registro-->
-        <div class="">
-
-            <div align="center">
-                <h2>Inicia sesión</h2>
-                <img class="logo" aling="center" th:src="@{/images/LoginIMG.png}" width="300px" height="130px">
-            </div>
-            <form th:action="@{/login}" method="post">
-                <div th:insert="~{fragments/alert :: alerts}">
-                </div>
-                <!--Campos del formulario-->
-                <div class="login">
-                    <label>
-                        <input class="form-control username" type="text" name="username" autocomplete="on"
-                               placeholder="Usuario" />
-                    </label>
-                    <label>
-                        <input class="form-control password" type="password" name="password" autocomplete="off"
-                               placeholder="Contraseña" />
-                    </label>
-                    <br>
-                    <a  th:href="@{/views/email}" class="link">¿Olvidaste tu contraseña?</a>
-                    <br>
-                    <br>
-                    <div>
-                        <button style="background-color: #6adbd9 !important" class="btn">Entrar</button>
-
+<div class="container mt-5" id="container">
+    <!--Formulario de registro-->
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 justify-content-center">
+            <div class="card">
+                <div class="card-body">
+                    <div align="center">
+                        <h2>Inicia sesión</h2>
+                        <img class="logo" aling="center" th:src="@{/images/LoginIMG.png}" width="300px" height="130px">
                     </div>
-                </div>
-            </form>
-            <br>
-            <br>
-
-            <!-- Button trigger modal -->
-            <label>¿No tienes una cuenta?</label>
-            <button type="button" style="background-color: #cafcfb !important" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Regístrate
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Regístrate</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <form th:action="@{/login}" method="post">
+                        <div th:insert="~{fragments/alert :: alerts}">
                         </div>
-                        <div class="modal-body">
-                            <form th:action="@{/create-acount}" method="post" th:object="${user}">
-
-                                <label class="label">Nombre</label>
-                                <input type="text" class="form-control" name="name" placeholder="Nombre" th:value="${user.name}" required />
-                                <div class="form-text text-danger" th:if="${errors != null && errors.get('name') != null}">
-                        <span th:each="error: ${errors.get('name')}">
-                            [[${error}]]
+                        <!--Campos del formulario-->
+                        <div class="login">
+                            <div class="col-12 mt-3">
+                                <label>
+                                    <input class="form-control username" type="text" name="username" autocomplete="on"
+                                           placeholder="Usuario" />
+                                </label>
+                            </div>
+                            <div class="col-12">
+                                <label>
+                                    <input class="form-control password" type="password" name="password" autocomplete="off"
+                                           placeholder="Contraseña" />
+                                </label>
+                            </div>
                             <br>
-                        </span>
-                                </div>
-
-                                <label class="label">Primer apellido</label>
-                                <input type="text" class="form-control" name="first_lastname" placeholder="Primer apellido" th:field="*{firstLastname}" required />
-                                <div class="form-text text-danger" th:if="${errors != null && errors.get('firstLastname') != null}">
-                        <span th:each="error: ${errors.get('firstLastname')}">
-                            [[${error}]]
-                            <br>
-                        </span>
-                                </div>
-
-                                <label class="label">Segundo apellido</label>
-                                <input type="text" class="form-control" name="second_lastname" placeholder="Segundo apellido" th:field="*{secondLastname}" required />
-                                <div class="form-text text-danger " th:if="${errors != null && errors.get('secondLastname') != null}">
-                        <span th:each="error: ${errors.get('secondLastname')}">
-                            [[${error}]]
-                            <br>
-                        </span>
-                                </div>
-
-                                <label class="label">Username</label>
-                                <input type="text" class="form-control" name="username" placeholder="Usuario" th:value="${user.username}" required />
-                                <div class="form-text text-danger " th:if="${errors != null && errors.get('username') != null}">
-                        <span th:each="error: ${errors.get('username')}">
-                            [[${error}]]
-                            <br>
-                        </span>
-                                </div>
-
-                                <label class="label">Soy...</label>
+                            <div class="col-12 text-center">
+                                <a  th:href="@{/views/email}" class="link text-primary">¿Olvidaste tu contraseña?</a>
+                                <br>
+                                <br>
                                 <div>
-                                    <label class="radio" for="inlineRadio1"><input class="form-check-input" type="radio" name="rol"
-                                                                                   th:value="ROLE_ADOPTADOR" th:field="*{role.name}" >Adoptador</label>
-                                    <label class="radio" for="inlineRadio2"><input class="form-check-input" type="radio" name="rol"
-                                                                                   th:value="ROLE_VOLUNTARIO" th:field="*{role.name}">Voluntario</label>
+                                    <button style="background-color: #6adbd9 !important" class="btn">Entrar</button>
+
                                 </div>
-                                <div class="form-text text-danger " th:if="${errors != null && errors.get('role') != null}">
-                        <span th:each="error: ${errors.get('role')}">
-                            [[${error}]]
-                            <br>
-                        </span>
-                                </div>
-
-
-                                <label class="label">Contraseña</label>
-                                <input type="password" class="form-control" name="password" placeholder="Contraseña" th:field="*{password}" onchange="validPassword()" id="password" required />
-                                <label class="label">Confirmar contraseña</label>
-                                <input type="password" class="form-control" name="password" placeholder="Confirmar Contraseña"   onchange="validPassword()" id="confirmPassword" required />
-                                <button type="submit" style="background-color: #6adbd9 !important" class="btn" id="buttonRegister" onclick="validPassword()">Registrar</button>
-                                <div th:insert="~{fragments/alert :: alerts}"></div>
-
-                            </form>
-
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                    </form>
+
+                    <div class="col-12 text-center mt-4">
+                        <label>¿No tienes una cuenta?</label>
+                        <button type="button" class="btn text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Regístrate
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-3"></div>
+
+        <!-- Button trigger modal -->
 
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Regístrate</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/create-acount}" method="post" th:object="${user}">
+
+                            <label class="label">Nombre</label>
+                            <input type="text" class="form-control" name="name" placeholder="Nombre" th:value="${user.name}" required />
+                            <div class="form-text text-danger" th:if="${errors != null && errors.get('name') != null}">
+                        <span th:each="error: ${errors.get('name')}">
+                            [[${error}]]
+                            <br>
+                        </span>
+                            </div>
+
+                            <label class="label">Primer apellido</label>
+                            <input type="text" class="form-control" name="first_lastname" placeholder="Primer apellido" th:field="*{firstLastname}" required />
+                            <div class="form-text text-danger" th:if="${errors != null && errors.get('firstLastname') != null}">
+                        <span th:each="error: ${errors.get('firstLastname')}">
+                            [[${error}]]
+                            <br>
+                        </span>
+                            </div>
+
+                            <label class="label">Segundo apellido</label>
+                            <input type="text" class="form-control" name="second_lastname" placeholder="Segundo apellido" th:field="*{secondLastname}" required />
+                            <div class="form-text text-danger " th:if="${errors != null && errors.get('secondLastname') != null}">
+                        <span th:each="error: ${errors.get('secondLastname')}">
+                            [[${error}]]
+                            <br>
+                        </span>
+                            </div>
+
+                            <label class="label">Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="Usuario" th:value="${user.username}" required />
+                            <div class="form-text text-danger " th:if="${errors != null && errors.get('username') != null}">
+                        <span th:each="error: ${errors.get('username')}">
+                            [[${error}]]
+                            <br>
+                        </span>
+                            </div>
+
+                            <label class="label">Soy...</label>
+                            <div>
+                                <label class="radio" for="inlineRadio1"><input class="form-check-input" type="radio" name="rol"
+                                                                               th:value="ROLE_ADOPTADOR" th:field="*{role.name}" >Adoptador</label>
+                                <label class="radio" for="inlineRadio2"><input class="form-check-input" type="radio" name="rol"
+                                                                               th:value="ROLE_VOLUNTARIO" th:field="*{role.name}">Voluntario</label>
+                            </div>
+                            <div class="form-text text-danger " th:if="${errors != null && errors.get('role') != null}">
+                        <span th:each="error: ${errors.get('role')}">
+                            [[${error}]]
+                            <br>
+                        </span>
+                            </div>
+
+
+                            <label class="label">Contraseña</label>
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña" th:field="*{password}" onchange="validPassword()" id="password" required />
+                            <label class="label">Confirmar contraseña</label>
+                            <input type="password" class="form-control" name="password" placeholder="Confirmar Contraseña"   onchange="validPassword()" id="confirmPassword" required />
+                            <button type="submit" style="background-color: #6adbd9 !important" class="btn" id="buttonRegister" onclick="validPassword()">Registrar</button>
+                            <div th:insert="~{fragments/alert :: alerts}"></div>
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</main>
+</div>
 <div th:replace="~{fragments/footer :: footer}"></div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
