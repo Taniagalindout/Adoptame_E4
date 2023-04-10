@@ -215,7 +215,6 @@ p{padding:10px}
 .card {
     border: none;
     overflow: hidden;
-    border-radius: 20px;
     box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
 }
 
