@@ -9,27 +9,35 @@
     </div>
 
     <div class="container mt-3">
-        <h2>Detalle Mascota</h2>
         <div th:insert="~{fragments/alert :: alerts}">
         </div>
 
         <div class="row">
-            <div class="col-12 col-md-4 d-flex mb-2 justify-content-center align-items-center">
-                <img class="img-fluid border-2 border-dark" th:src="@{/uploads/{image}(image=${pet.image})}" alt="" />
+            <div class="col-12">
+                <h5 class="card-title"><b>ㅤDETALLE MASCOTA</b></h5>
             </div>
-            <div class="col-12 col-md-8 border border-3 border-dark rounded p-2">
-                    <div th:insert="~{fragments/infoPet :: infoPet}">
+            <hr class="col-12 mt-3"/>
+        </div>
 
-                    </div>
-                    <div class="col-12 mt-2" sec:authorize="hasRole('ROLE_ADMINISTRADOR')" th:insert="~{fragments/formTracingPet :: petTracingForm}">
-
-                    </div>
+        <div class="row">
+            <div class="col-12 col-md-4 justify-content-center align-items-center">
+                <img class="img-fluid" th:src="@{/uploads/{image}(image=${pet.image})}" alt="" />
+                <div class="col-12">ㅤ</div>
+                <div class="col-12 d-grid gap-2">
+                    <a th:href="@{/pets/management_list}" class="btn btn-block btn-blueC"><i class="bi bi-arrow-left"></i> <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"><b>Volver</b></span></a>
                 </div>
             </div>
+            <div class="col-12 col-md-8">
+                <div th:insert="~{fragments/infoPet :: infoPet}">
 
+                </div>
+                <div class="col-12 mt-2" sec:authorize="hasRole('ROLE_ADMINISTRADOR')" th:insert="~{fragments/formTracingPet :: petTracingForm}">
 
-
+                </div>
+            </div>
         </div>
+
+    </div>
 
         <div th:replace="~{fragments/footer :: footer}">
         </div>
