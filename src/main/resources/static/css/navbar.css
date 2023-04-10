@@ -17,3 +17,7 @@
         font-family: "Quicksand";
         background-color: #99ecea;
     }
+
+.style-text{
+    text-shadow: #181818 0em 0em 0.6em
+}
