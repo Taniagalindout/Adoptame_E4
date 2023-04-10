@@ -4,67 +4,83 @@
 
 <body>
 <div th:fragment="infoPet" th:if="${pet!= null}">
-  <h4>Información general</h4>
-  <div th:object="${pet}" class="row mt-3 px-5">
-    <div class="col-12 col-sm-6 col-md-4 mb-2">
-      <p class="fw-bold">Nombre</p>
-      <p>
-        [[*{name}]]
-      </p>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-2">
-      <p class="fw-bold">Edad</p>
-      <p>
-        [[*{age}]]
-      </p>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-2">
-      <p class="fw-bold">Tipo de mascota</p>
-      <p class="text-capitalize">
-        [[*{type}]]
-      </p>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-2">
-      <p class="fw-bold">Sexo de la mascota</p>
-      <p class="text-capitalize">
-        [[*{sex}]]
-      </p>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-2">
-      <p class="fw-bold">Color</p>
-      <p>
-        [[*{color.name}]]
-      </p>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-2">
-      <p class="fw-bold">Tamaño</p>
-      <p>
-        [[*{size.name}]]
-      </p>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-2">
-      <p class="fw-bold">Carácter</p>
-      <p>
-        [[*{personality.name}]]
-      </p>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-2">
-      <p class="fw-bold">Disponible para adopción</p>
-      <p>
-        [[${pet.availableAdoption ? 'Disponible' : 'No disponible'}]]
-      </p>
-    </div>
-    <div class="col-12 col-sm-6 col-md-4 mb-2" sec:authorize="isAuthenticated() && !hasRole('ROLE_ADOPTADOR')">
-      <p class="fw-bold">Estado de publicación</p>
-      <p class="text-capitalize">
-        [[*{isAccepted}]]
-      </p>
-    </div>
-    <div class="col-12 mb-2" sec:authorize="isAuthenticated() && hasRole('ROLE_ADOPTADOR')">
-      <div th:insert="~{fragments/formAdopt :: formAdopt}">
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
 
+        <div class="row">
+          <div class="col-12">
+            <h5 class="card-title text-center"><b>ㅤINFORMACIÓN GENERAL</b></h5>
+          </div>
+          <hr class="col-12 mt-3 mb-1"/>
+        </div>
+
+        <div class="row">
+          <div th:object="${pet}" class="row mt-3 px-5">
+            <div class="col-12 col-sm-6 col-md-4 mb-1">
+              <p class="fw-bold">Nombre</p>
+              <p>
+                [[*{name}]]
+              </p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 mb-1">
+              <p class="fw-bold">Edad</p>
+              <p>
+                [[*{age}]]
+              </p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 mb-1">
+              <p class="fw-bold">Tipo de mascota</p>
+              <p class="text-capitalize">
+                [[*{type}]]
+              </p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 mb-1">
+              <p class="fw-bold">Sexo de la mascota</p>
+              <p class="text-capitalize">
+                [[*{sex}]]
+              </p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 mb-1">
+              <p class="fw-bold">Color</p>
+              <p>
+                [[*{color.name}]]
+              </p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 mb-1">
+              <p class="fw-bold">Tamaño</p>
+              <p>
+                [[*{size.name}]]
+              </p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 mb-1">
+              <p class="fw-bold">Carácter</p>
+              <p>
+                [[*{personality.name}]]
+              </p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 mb-1">
+              <p class="fw-bold">Disponible para adopción</p>
+              <p>
+                [[${pet.availableAdoption ? 'Disponible' : 'No disponible'}]]
+              </p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" sec:authorize="isAuthenticated() && !hasRole('ROLE_ADOPTADOR')">
+              <p class="fw-bold">Estado de publicación</p>
+              <p class="text-capitalize">
+                [[*{isAccepted}]]
+              </p>
+            </div>
+            <div class="col-12 mb-2" sec:authorize="isAuthenticated() && hasRole('ROLE_ADOPTADOR')">
+              <div th:insert="~{fragments/formAdopt :: formAdopt}">
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 </div>
 </body>
 
