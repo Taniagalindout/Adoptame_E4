@@ -9,76 +9,84 @@
     <div th:replace="~{fragments/navigation :: navigation}">
     </div>
 
-    <div class="container mt-3">
-        <div class="row">
-            <h2 class="col-6">Solicitudes de adopción</h2>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h5 class="card-title"><b>ㅤSOLICITUDES DE ADOPCIÓN</b></h5>
+                    </div>
+                    <hr class="col-12 mt-3">
+                </div>
+
+                <div class="table-responsive-sm table-responsive-md mt-2">
+                    <div th:insert="~{fragments/alert :: alerts}">
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center" scope="col">#</th>
+                            <th class="text-center" scope="col">Mascota</th>
+                            <th class="text-center" scope="col" sec:authorize="hasRole('ROLE_VOLUNTARIO')">Usuario solicitante</th>
+                            <th class="text-center" scope="col" sec:authorize="hasRole('ROLE_VOLUNTARIO')">Nombre solicitante</th>
+                            <th class="text-center" scope="col">Estado de solicitud</th>
+                            <th class="text-center" scope="col">Fecha de solicitud</th>
+                            <th class="text-center" scope="col">Fecha de respuesta</th>
+                            <th class="text-center" scope="col">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="item, iter : ${adoptionsList}">
+                        <tr class="bg-blue" style="vertical-align: middle">
+                            <th class="text-center pt-3 mt-1" scope="row">[[${ index + (iter.index + 1) }]]</th>
+                            <td class="text-center pt-3 mt-1">
+                                [[${item.pet.name}]]
+                            </td>
+                            <td class="text-center" sec:authorize="hasRole('ROLE_VOLUNTARIO')">
+                                [[${item.user.username}]]
+                            </td>
+                            <td class="text-center" sec:authorize="hasRole('ROLE_VOLUNTARIO')">
+                                [[${item.user.name}]]&nbsp;[[${item.user.firstLastname}]]&nbsp;[[${item.user.secondLastname}]]
+                            </td>
+                            <td class="text-capitalize text-center">
+                                <div th:switch="${item.state}">
+                                    <div th:case="'aceptada'">
+                                        <p class="text-muted text-center">
+                                            <span class="badge bg-success">Aceptada</span>
+                                        </p>
+                                    </div>
+                                    <div th:case="'pendiente'">
+                                        <p class="text-muted text-center">
+                                            <span class="badge bg-warning">Pendiente</span>
+                                        </p>
+                                    </div>
+                                    <div th:case="'rechazada'">
+                                        <p class="text-muted text-center">
+                                            <span class="badge bg-danger">Rechazada</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center" th:text="${#dates.format(item.applicationDate, 'dd-MMM-yyyy')}"></td>
+                            <td class="text-center">
+                                <p th:if="${item.closedDate != null}">
+                                    [[${#dates.format(item.closedDate, 'dd-MMM-yyyy')}]]
+                                </p>
+                                <p th:if="${item.closedDate == null}">
+                                    *******
+                                </p>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-blueC" th:href="@{/adoptions/report/{id}(id=${item.id})}"><i class="bi bi-eye"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div th:insert="~{fragments/paginator :: paginator}">
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="table-responsive-sm table-responsive-md mt-2">
-            <div th:insert="~{fragments/alert :: alerts}">
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="text-center" scope="col">#</th>
-                        <th class="text-center" scope="col">Mascota</th>
-                        <th class="text-center" scope="col" sec:authorize="hasRole('ROLE_VOLUNTARIO')">Usuario solicitante</th>
-                        <th class="text-center" scope="col" sec:authorize="hasRole('ROLE_VOLUNTARIO')">Nombre solicitante</th>
-                        <th class="text-center" scope="col">Estado de solicitud</th>
-                        <th class="text-center" scope="col">Fecha de solicitud</th>
-                        <th class="text-center" scope="col">Fecha de respuesta</th>
-                        <th class="text-center" scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="item, iter : ${adoptionsList}">
-                        <th class="text-center" scope="row">[[${ index + (iter.index + 1) }]]</th>
-                        <td class="text-center">
-                            [[${item.pet.name}]]
-                        </td>
-                        <td class="text-center" sec:authorize="hasRole('ROLE_VOLUNTARIO')">
-                            [[${item.user.username}]]
-                        </td>
-                        <td class="text-center" sec:authorize="hasRole('ROLE_VOLUNTARIO')">
-                            [[${item.user.name}]]&nbsp;[[${item.user.firstLastname}]]&nbsp;[[${item.user.secondLastname}]]
-                        </td>
-                        <td class="text-capitalize text-center">
-                            <div th:switch="${item.state}">
-                                <div th:case="'aceptada'">
-                                    <p class="text-muted text-center">
-                                        <span class="badge bg-success">Aceptada</span>
-                                    </p>
-                                </div>
-                                <div th:case="'pendiente'">
-                                    <p class="text-muted text-center">
-                                        <span class="badge bg-warning">Pendiente</span>
-                                    </p>
-                                </div>
-                                <div th:case="'rechazada'">
-                                    <p class="text-muted text-center">
-                                        <span class="badge bg-danger">Rechazada</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center" th:text="${#dates.format(item.applicationDate, 'dd-MMM-yyyy')}"></td>
-                        <td class="text-center">
-                            <p th:if="${item.closedDate != null}">
-                                [[${#dates.format(item.closedDate, 'dd-MMM-yyyy')}]]
-                            </p>
-                            <p th:if="${item.closedDate == null}">
-                                *******
-                            </p>
-                        </td>
-                        <td>
-                            <a class="btn btn-info" th:href="@{/adoptions/report/{id}(id=${item.id})}"><i class="bi bi-eye"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div th:insert="~{fragments/paginator :: paginator}">
-            </div>
-        </div>
     </div>
 
     <div th:replace="~{fragments/footer :: footer}">

@@ -9,62 +9,80 @@
 </div>
 
 <div class="container mt-3">
-    <h2>Solicitud de adopción</h2>
+    <div class="row">
+        <div class="col-12">
+            <h5 class="card-title"><b>ㅤSOLICITUD DE ADOPCIÓN</b></h5>
+        </div>
+        <hr class="col-12 mt-3"/>
+    </div>
     <div th:insert="~{fragments/alert :: alerts}">
     </div>
 
     <div class="row">
-        <div class="col-12 col-md-4 d-flex mb-2 justify-content-center align-items-center">
+        <div class="col-12 col-md-4 justify-content-center align-items-center">
             <img class="img-fluid border-2" th:src="@{/uploads/{image}(image=${pet.image})}" alt="" />
-        </div>
-        <div class="col-12 col-md-8 p-2">
-            <div th:insert="~{fragments/infoPet :: infoPet}">
-
+            <div>ㅤ</div>
+            <div class="col-12 d-grid gap-2">
+                <a th:href="@{/adoptions/list}" class="btn btn-block btn-blueC"><i class="bi bi-arrow-left"></i> <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"><b>Volver</b></span></a>
             </div>
-
-            <div class="mt-1" >
-               <h4 class="mb-3">Información general de la solicitud</h4>
-                <div class="row px-5">
-                    <div class="col-12 col-sm-6 mb-2">
-                        <p class="fw-bold">Usuario solicitante</p>
-                        <p>
-                            [[${applicationInfo.user.username}]]
-                        </p>
-                    </div>
-                    <div class="col-12 col-sm-6 mb-2">
-                        <p class="fw-bold">Nombre usuario solicitante</p>
-                        <p>
-                            [[${applicationInfo.user.name}]]&nbsp;[[${applicationInfo.user.firstLastname}]]&nbsp;[[${applicationInfo.user.secondLastname}]]
-                        </p>
-                    </div>
-                    <div class="col-12 col-sm-6 mb-2">
-                        <p class="fw-bold">Estado de la solicitud</p>
-                        <p class="text-capitalize">
-                            [[${applicationInfo.state}]]
-                        </p>
-                    </div>
-                    <div class="col-12 col-sm-6 mb-2">
-                        <p class="fw-bold">Fecha de solicitud</p>
-                        <p>
-                            [[${#dates.format(applicationInfo.applicationDate, 'dd-MMM-yyyy')}]]
-                        </p>
-                    </div>
-                    <div class="col-12 col-sm-6 mb-2">
-                        <p class="fw-bold">Fecha de respuesta</p>
-                        <p>
-                        <p th:if="${applicationInfo.closedDate != null}">
-                            [[${#dates.format(applicationInfo.closedDate, 'dd-MMM-yyyy')}]]
-                        </p>
-                        <p th:if="${applicationInfo.closedDate == null}">
-                            *******
-                        </p>
-                        </p>
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="card-title text-center"><b>ㅤINFORMACIÓN GENERAL DE LA SOLICITUD</b></h5>
+                            </div>
+                            <hr class="col-12 mt-3"/>
+                        </div>
+                        <div class="row px-5">
+                            <div class="col-12 col-sm-6 mb-2">
+                                <p class="fw-bold">Usuario solicitante</p>
+                                <p>
+                                    [[${applicationInfo.user.username}]]
+                                </p>
+                            </div>
+                            <div class="col-12 col-sm-6 mb-2">
+                                <p class="fw-bold">Nombre usuario solicitante</p>
+                                <p>
+                                    [[${applicationInfo.user.name}]]&nbsp;[[${applicationInfo.user.firstLastname}]]&nbsp;[[${applicationInfo.user.secondLastname}]]
+                                </p>
+                            </div>
+                            <div class="col-12 col-sm-6 mb-2">
+                                <p class="fw-bold">Estado de la solicitud</p>
+                                <p class="text-capitalize">
+                                    [[${applicationInfo.state}]]
+                                </p>
+                            </div>
+                            <div class="col-12 col-sm-6 mb-2">
+                                <p class="fw-bold">Fecha de solicitud</p>
+                                <p>
+                                    [[${#dates.format(applicationInfo.applicationDate, 'dd-MMM-yyyy')}]]
+                                </p>
+                            </div>
+                            <div class="col-12 col-sm-6 mb-2">
+                                <p class="fw-bold">Fecha de respuesta</p>
+                                <p th:if="${applicationInfo.closedDate != null}">
+                                    [[${#dates.format(applicationInfo.closedDate, 'dd-MMM-yyyy')}]]
+                                </p>
+                                <p th:if="${applicationInfo.closedDate == null}">
+                                    *******
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
             <div class="col-12 mt-2" th:if="${applicationInfo.closedDate == null}" sec:authorize="hasRole('ROLE_VOLUNTARIO')" th:insert="~{fragments/formTracingAdoptionApplication :: petAdoptionForm}">
 
             </div>
+            <div class="mt-3" th:insert="~{fragments/infoPet :: infoPet}">
+
+            </div>
+
         </div>
     </div>
 
