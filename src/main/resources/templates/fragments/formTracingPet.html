@@ -16,7 +16,7 @@
                     <div class="col-12 col-sm-6">
                         <input th:field="*{id}" type="hidden">
 
-                        <label class="form-label">Estado de aceptación del registro</label>
+                        <label class="form-label"><b>Estado de aceptación del registro</b></label>
                         <div class="form-check" th:each="item : ${tracingOptions}">
                             <input th:field="*{isAccepted}" th:value="${item}" class="form-check-input" type="radio" name="accepted">
                             <label class="form-check-label text-capitalize">
@@ -30,13 +30,11 @@
                     </span>
                         </div>
                     </div>
-                    <div class="col-12 px-5 mt-3">
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-2 mt-3">
                             <button class="btn btn-blue">
                                 <b class="text-white">Cambiar estado de aceptación</b>
                             </button>
                         </div>
-                    </div>
                 </form>
             </div>
         </div>
