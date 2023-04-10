@@ -14,15 +14,15 @@
 <body>
 
     <div th:fragment="formAdopt" th:if="${adoptionInfo!= null}">
-        <h5>¿Te interesa este agradable amigo?</h5>
+        <h5 class="mt-3">¿Te interesa este agradable amigo?</h5>
         <form th:object="${adoptionInfo}" th:action="@{/adoptions/save}" method="post">
-            <div class="col-12 px-5 mt-3">
+            <div class="col-12">
                 <input type="hidden" th:field="*{username}">
                 <input type="hidden" th:field="*{petId}">
 
                 <div class="d-grid gap-2">
-                    <button class="btn" style="background-color:  #0abbb5; color: black">
-                        <i class="bi bi-send"></i> Enviar solicitud de adopción
+                    <button class="btn btn-blue text-white">
+                        <i class="bi bi-send"></i> <b>Enviar solicitud de adopción</b>
                     </button>
                 </div>
             </div>
