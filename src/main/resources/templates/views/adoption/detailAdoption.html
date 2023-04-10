@@ -8,16 +8,22 @@
 <div th:replace="~{fragments/navigation :: navigation}">
 </div>
 
-<div class="container mt-3">
-    <h2>Adopta un amigo fiel</h2>
+<div class="container mt-5">
     <div th:insert="~{fragments/alert :: alerts}">
     </div>
 
     <div class="row">
-        <div class="col-12 col-md-4 d-flex mb-2 justify-content-center align-items-center">
-            <img class="img-fluid border-2 border-dark" th:src="@{/uploads/{image}(image=${pet.image})}" th:alt="${pet.name}" />
+        <div class="col-12 col-md-4 justify-content-center align-items-center">
+            <div class="row">
+                <img class="img-fluid border-2 border-dark" th:src="@{/uploads/{image}(image=${pet.image})}" th:alt="${pet.name}" />
+                <div class="col-12" sec:authorize="isAuthenticated() && hasRole('ROLE_ADOPTADOR')">
+                    <div th:insert="~{fragments/formAdopt :: formAdopt}">
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-md-8 p-2">
+        <div class="col-12 col-md-8">
             <div th:insert="~{fragments/infoPet :: infoPet}">
 
             </div>
