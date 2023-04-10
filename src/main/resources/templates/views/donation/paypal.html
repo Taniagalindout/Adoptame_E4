@@ -3,12 +3,9 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" th:href="@{/css/navbar.css}">
   <style>
-    body {
-      font-family: Arial;
-      font-size: 17px;
-      padding: 8px;
-    }
 
     * {
       box-sizing: border-box;
@@ -44,6 +41,7 @@
     }
 
     .container {
+      margin-top: 20px;
       background-color: #f2f2f2;
       padding: 5px 20px 15px 20px;
       border: 1px solid lightgrey;
@@ -111,47 +109,42 @@
   </style>
 </head>
 <body>
+<div th:insert="~{fragments/infoToast :: infoToast}">
+</div>
+<div th:replace="~{fragments/navigation :: navigation}">
+
+</div>
 <div class="row">
   <div class="col-75">
     <div class="container">
       <form method="post"  th:action="@{/donation/pay}">
         <div class="col-50">
-          <h3>Payment</h3>
-          <label>Accepted Cards</label>
+          <h3>Donaciones para beneficiar a las mascotas en adopción</h3>
+          <label>Tarjetas de crédito aceptadas</label>
           <div class="icon-container">
             <i class="fa fa-cc-visa" style="color:navy;"></i>
             <i class="fa fa-cc-amex" style="color:blue;"></i>
             <i class="fa fa-cc-mastercard" style="color:red;"></i>
             <i class="fa fa-cc-discover" style="color:orange;"></i>
           </div>
-          <label for="price">Total</label>
+          <label for="price">Monto</label>
           <input type="text" id="price" name="price" value="10">
-          <label for="currency">Currency</label>
-          <input type="text" id="currency" name="currency" placeholder="Enter Currency">
-          <label for="method">Payment Method</label>
-          <input type="text" id="method" name="method" placeholder="Payment Method">
-          <label for="intent">Intent</label>
+          <label for="currency">Divisa</label>
+          <input type="text" id="currency" name="currency" placeholder="MXN">
+          <label for="method">Método de pago</label>
+          <input type="text" id="method" name="method" placeholder="PayPal">
+          <label for="intent">Intención</label>
           <input type="text" id="intent" name="intent" value="sale">
-          <label for="description">Payment Description</label>
-          <input type="text" id="description" name="description" placeholder="Payment Description">
+          <label for="description">Descripción</label>
+          <input type="text" id="description" name="description" placeholder="Para los gatitos...">
 
         </div>
 
-        <input type="submit" value="Continue to checkout" class="btn">
+        <input type="submit" value="Continuar" class="btn">
       </form>
     </div>
   </div>
-  <div class="col-25">
-    <div class="container">
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-      <p><a href="#">Product 1</a> <span class="price">$1</span></p>
-      <p><a href="#">Product 2</a> <span class="price">$4</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$3</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-      <hr>
-      <p>Total <span class="price" style="color:black"><b>$10</b></span></p>
-    </div>
-  </div>
+  <div th:replace="~{fragments/footer :: footer}">
 </div>
 
 </body>
