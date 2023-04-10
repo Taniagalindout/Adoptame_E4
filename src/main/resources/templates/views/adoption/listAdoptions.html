@@ -24,7 +24,7 @@
                     </div>
                     <table class="table">
                         <thead>
-                        <tr>
+                        <tr >
                             <th class="text-center" scope="col">#</th>
                             <th class="text-center" scope="col">Mascota</th>
                             <th class="text-center" scope="col" sec:authorize="hasRole('ROLE_VOLUNTARIO')">Usuario solicitante</th>
@@ -36,7 +36,7 @@
                         </tr>
                         </thead>
                         <tbody th:each="item, iter : ${adoptionsList}">
-                        <tr class="bg-blue" style="vertical-align: middle">
+                        <tr class="bg-blue" style="vertical-align: middle" id="spacing-row">
                             <th class="text-center pt-3 mt-1" scope="row">[[${ index + (iter.index + 1) }]]</th>
                             <td class="text-center pt-3 mt-1">
                                 [[${item.pet.name}]]

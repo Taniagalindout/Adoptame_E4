@@ -4,7 +4,6 @@
 }
 
 body {
-    background: #f6f5f7;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,6 +11,7 @@ body {
     font-family: "Montserrat", sans-serif;
     height: 100vh;
     margin: -20px 0 50px;
+    background-image: url(../images/fondo.png)!important;
 }
 
 h1 {
@@ -50,16 +50,13 @@ a {
 }
 
 button {
-    border-radius: 20px;
-    border: 1px solid #1cb5e0;
-    background-color: #1cb5e0;
+    background-color: #0abbb5;
     color: #ffffff;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: transform 80ms ease-in;
 }
 
 button:active {
@@ -86,10 +83,7 @@ form {
     text-align: center;
 }
 
-.radio {
-    float: left;
-    margin: 10px;
-}
+
 
 .label {
     font-size: 14px;
@@ -136,7 +130,7 @@ select {
 }
 
 .link {
-    color: blue;
+    color: #f2f2f2;
     text-decoration: underline;
 }
 
@@ -146,7 +140,7 @@ select {
     box-shadow: 0 14px 28px #00000040, 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     overflow: hidden;
-    width: 900px;
+    width: 400px;
     max-width: 100%;
     min-height: 620px;
 }
