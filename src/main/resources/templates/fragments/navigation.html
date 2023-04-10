@@ -11,52 +11,53 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-white" aria-current="page" th:href="@{/}"><b>Inicio</b></a>
+                        <a class="nav-link text-white" aria-current="page" th:href="@{/}"><b class="style-text">Inicio</b></a>
                     </li>
                     <div sec:authorize="!isAuthenticated() || hasRole('ROLE_ADOPTADOR')" class="d-flex">
                         <li class="nav-item">
-                            <a class="nav-link text-white" th:href="@{/pets/adopt/perro}"><b>Perros</b></a>
+                            <a class="nav-link text-white" th:href="@{/pets/adopt/perro}"><b class="style-text">Perros</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" th:href="@{/pets/adopt/gato}"><b>Gatos</b></a>
+                            <a class="nav-link text-white" th:href="@{/pets/adopt/gato}"><b class="style-text">Gatos</b></a>
                         </li>
                     </div>
                     <div sec:authorize="isAuthenticated() && !hasRole('ROLE_ADOPTADOR')">
                         <li class="nav-item">
-                            <a class="nav-link text-white" th:href="@{/pets/management_list}"><b>Mascotas</b></a>
+                            <a class="nav-link text-white" th:href="@{/pets/management_list}"><b class="style-text">Mascotas</b></a>
                         </li>
                     </div>
                     <div sec:authorize="isAuthenticated() && !hasRole('ROLE_ADMINISTRADOR')">
                         <li class="nav-item">
-                            <a class="nav-link text-white" th:href="@{/adoptions/list}"><b>Solicitudes de adopción</b></a>
+                            <a class="nav-link text-white" th:href="@{/adoptions/list}"><b class="style-text">Solicitudes de adopción</b></a>
                         </li>
                     </div>
                     <div sec:authorize="isAuthenticated() && hasRole('ROLE_ADMINISTRADOR')">
                         <li class="nav-item">
-                            <a class="nav-link text-white" th:href="@{/blog/management_list}"><b>Noticias</b></a>
+                            <a class="nav-link text-white" th:href="@{/blog/management_list}"><b class="style-text">Noticias</b></a>
                         </li>
                     </div>
                     <div>
                         <li class="nav-item">
-                            <a class="nav-link text-white" th:href="@{/blog/general}"><b>Noticias General</b></a>
+                            <a class="nav-link text-white" th:href="@{/blog/general}"><b class="style-text">Noticias General</b></a>
                         </li>
                     </div>
                 </ul>
+                <b class="style-text">
                 <div class="d-flex">
                     <div sec:authorize="!isAuthenticated()">
-                        <a class="btn btn-success" th:href="@{/login}"><i class="bi bi-box-arrow-in-left"></i><span
-                                class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Iniciar Sesión</span></a>
+                        <a class="btn btn-blue text-white" th:href="@{/login}"><i class="bi bi-box-arrow-in-left"></i><span
+                                class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"><b>ㅤIniciar Sesión</b> </span></a>
                     </div>
                     <div sec:authorize="isAuthenticated()" class="d-flex">
                         <p class="text-white px-2 my-0 d-flex align-items-center" sec:authentication="name"></p>&nbsp
                         <form th:action="@{/logout}" method="post">
-                            <button class="btn btn-danger" type="submit"><i class="bi bi-box-arrow-in-right"></i><span
-                                    class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline"> Cerrar
-                                    Sesión</span></button>
+                            <button class="btn btn-blue text-white" type="submit"><i class="bi bi-box-arrow-in-right"></i><span
+                                    class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline "><b>ㅤCerrar
+                                    Sesión</b></span></button>
                         </form>
                     </div>
-
                 </div>
+                </b>
             </div>
         </div>
     </nav>
