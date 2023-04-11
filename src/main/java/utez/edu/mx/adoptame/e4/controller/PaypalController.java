@@ -6,6 +6,7 @@ import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import utez.edu.mx.adoptame.e4.entity.Order;
 import utez.edu.mx.adoptame.e4.service.PaypalService;
 
@@ -16,7 +17,7 @@ public class PaypalController {
     @Autowired
     PaypalService service;
 
-    public static final String SUCCESS_URL = "successDonation";
+    public static final String SUCCESS_URL = "index";
     public static final String CANCEL_URL = "incorrectDonation";
 
     @GetMapping("/red")
@@ -24,15 +25,19 @@ public class PaypalController {
         System.out.println("Redirijo");
         return "views/donation/paypal";
     }
-
+    Payment payment;
     @PostMapping("/pay")
     public String payment(@ModelAttribute("order") Order order) {
         try {
-            Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
+             payment= service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
                     order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
-                    "http://localhost:8080/" + SUCCESS_URL);
+                    "http://localhost:8080/"
+            );
+            System.out.println("Ok2");
+
             for(Links link:payment.getLinks()) {
                 if(link.getRel().equals("approval_url")) {
+                    System.out.println("Ok1");
                     return "redirect:"+link.getHref();
                 }
             }
@@ -41,7 +46,7 @@ public class PaypalController {
 
             e.printStackTrace();
         }
-        return "views/donation/paypal";
+        return "index";
     }
 
     @GetMapping(value = CANCEL_URL)
@@ -55,7 +60,7 @@ public class PaypalController {
             Payment payment = service.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
-                return "views/successDonation";
+                return "index";
             }
         } catch (PayPalRESTException e) {
             System.out.println(e.getMessage());
