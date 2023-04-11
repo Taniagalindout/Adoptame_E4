@@ -1,10 +1,130 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <title>Insert title here</title>
-</head>
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<header th:replace="~{fragments/head :: head}">
+</header>
+
 <body>
-<h1>Payment Failure</h1>
+
+<div th:insert="~{fragments/infoToast :: infoToast}">
+</div>
+<div th:replace="~{fragments/navigation :: navigation}">
+</div>
+
+<!--INICIO SLIDER-->
+<div class="container-fluid">
+  <div th:insert="~{fragments/alert :: alerts}"></div>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Gracias por apoyar!</strong> Donación exitosa. Sigue contribuyendo a la causa
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <!--Init carousel-->
+  <div class="row" th:if="${!flagRegister}">
+    <div class="col-12">
+      <h1 class="text-center">No existen blogs publicados</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item" th:classappend="${iter.count == 1} ? active  : ''"  th:each="item, iter : ${listBlogs}">
+          <a th:href="@{/blog/find_details_blog/{id}/false (id=${item.id})}">
+            <img  th:src="@{/uploads/{image} (image=${item.image})}" class="img-height d-block w-100" alt="...">
+            <div class="carousel-caption coursel-text">
+              <p class="btn-coursel"><b>[[${item.title}]]</b></p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!--Finish carousel-->
+
+  <div>
+    <br>
+    <p class="sp-text"><b>Encuentra una nueva Mascota</b></p>
+    <b><hr style="color: #3acbc6;"></b>
+    <div class="row back-links">
+      <div class="col-12">
+        ㅤㅤ
+      </div>
+      <div class="col-2">
+        ㅤ
+      </div>
+      <div class="col-2">
+        <div class="row text-center marg-row">
+          <h1><i class="bi bi-chat-square-heart-fill"></i></h1>
+          <b>Adopta y cambia la vida de un nuevo amigo</b>
+        </div>
+      </div>
+      <div class="col-1">
+        ㅤ
+      </div>
+      <div class="col-2">
+        <div class="row text-center marg-row">
+          <h1><i class="bi bi-search"></i></h1>
+          <b>Conoce más sobre nuestras mascotas</b>
+        </div>
+      </div>
+      <div class="col-1">
+        ㅤ
+      </div>
+      <div class="col-2">
+        <div class="row text-center marg-row">
+          <h1><i class="bi bi-clipboard2-heart-fill"></i></h1>
+          <b>Conviertete en voluntario para ayudarlos</b>
+        </div>
+      </div>
+      <div class="col-2">
+        ㅤ
+      </div>
+      <div class="col-12">
+        ㅤㅤ
+      </div>
+    </div>
+    <b><hr style="color: #3acbc6;"></b>
+    <br>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <br>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 parent">
+      <a class="nav-link text-white" th:href="@{/pets/adopt/perro}">
+        <img class="mx-auto d-block hg-blog" th:src="@{/images/Perro_470x.png}" alt="">
+        <p class="sp-text-div"><b>PERROS</b></p>
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 parent">
+      <a class="nav-link text-white" th:href="@{blog/general}">
+        <img class="mx-auto d-block hg-blog" th:src="@{/images/perrogato.jpg}" alt="">
+        <p class="sp-text-div"><b>NOTICIAS</b></p>
+      </a>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 parent">
+      <a class="nav-link text-white" th:href="@{/pets/adopt/gato}">
+        <img class="mx-auto d-block hg-blog" th:src="@{/images/gatoo_470x.png}"alt="">
+        <p class="sp-text-div"><b>GATOS</b></p>
+      </a>
+    </div>
+    <div class="col-12">
+      <br>
+    </div>
+  </div>
+</div>
+<div th:replace="~{fragments/footerBlog :: footer}"></div>
 </body>
-</html>
+</html>|

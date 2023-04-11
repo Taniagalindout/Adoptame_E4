@@ -17,7 +17,7 @@ public class PaypalController {
     @Autowired
     PaypalService service;
 
-    public static final String SUCCESS_URL = "index";
+    public static final String SUCCESS_URL = "donation/success";
     public static final String CANCEL_URL = "incorrectDonation";
 
     @GetMapping("/red")
@@ -25,19 +25,22 @@ public class PaypalController {
         System.out.println("Redirijo");
         return "views/donation/paypal";
     }
+    @GetMapping("/success")
+    public String succes() {
+        System.out.println("Redirijo");
+        return "views/donation/success";
+    }
     Payment payment;
     @PostMapping("/pay")
     public String payment(@ModelAttribute("order") Order order) {
         try {
              payment= service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
                     order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
-                    "http://localhost:8080/"
+                    "http://localhost:8080/"+SUCCESS_URL
             );
-            System.out.println("Ok2");
 
             for(Links link:payment.getLinks()) {
                 if(link.getRel().equals("approval_url")) {
-                    System.out.println("Ok1");
                     return "redirect:"+link.getHref();
                 }
             }
